@@ -60,19 +60,19 @@ Sample document:
 
 ```json
 {
-  count: true,
-  order: "-age name"
-  skip: 40,
-  limit: 20,
-  groupBy: "city",
-  where: [
-    { op: "and", clauses: [
-      { op: "eq", field: "name", value: "n1" },
-      { op: "gt", field: "age", value: 21 }
+  "count": true,
+  "order": "-age name"
+  "skip": 40,
+  "limit": 20,
+  "groupBy": "city",
+  "where": [
+    { "op": "and", "clauses": [
+      { "op": "eq", "field": "name", "value": "n1" },
+      { "op": "gt", "field": "age", "value": 21 }
     ]}
   ],
-  distinct: true,
-  projection: "id, name, lastname, age"
+  "distinct": true,
+  "projection": "id, name, lastname, age"
 }
 ```
 
@@ -82,10 +82,10 @@ Response message includes an envelop to support pagination information if needed
 
 ```json 
 {
-  totalCount: 12345,
-  skip: 100,
-  limit: 30
-  data: [
+  "totalCount": 12345,
+  "skip": 100,
+  "limit": 30
+  "data": [
     ...
   ]
 }
@@ -97,13 +97,13 @@ Error messages are encode in the following form:
 
 ```json
 {
-  error: "CODE003",
-  description: "Name is a compulsory field."
-  template: "{field} is a compulsory field.",
-  args: [
+  "error": "CODE003",
+  "description": "Name is a compulsory field."
+  "template": "{field} is a compulsory field.",
+  "args": [
     "field": "name"
   ],
-  context: null
+  "context": null
 }
 ```
 
@@ -245,7 +245,7 @@ Response:
 ```json
 200 OK
 
-{ msg: "pong" }
+{ "msg": "pong" }
 ```
 
 This endpoint COULD BE secured if needed.
@@ -270,12 +270,12 @@ Example checks:
 
 ```json
 {
-  name: 'app0',
-  version: '1.2.3'
-  checks: [
-    { name:"db", desc: "DB is accesible.", result: true },
-    { name:"certs", desc: "Certs present at /etc/certs.", result: true },
-    { name:"mailserver", error: "Mail server not responding at mail.acme.com", result: false },
+  "name": "app0",
+  "version": "1.2.3"
+  "checks": [
+    { "name":"db", "desc": "DB is accesible.", "result": true },
+    { "name":"certs", "desc": "Certs present at /etc/certs.", "result": true },
+    { "name":"mailserver", "error": "Mail server not responding at mail.acme.com", "result": false },
     ...
   ]
 }
