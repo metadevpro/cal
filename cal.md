@@ -184,9 +184,9 @@ Pagination parameters are:
 
 CAL2 plus order support on queries:
 
-- `order`: (string) order expression of the form: 
-- `name`: order by name ascending
-- `-age name`: order by age descending, the by name ascending 
+- `order`: (string) order expression of the form:
+  - `order=name`: order by name ascending
+  - `order=-age name`: order by age descending, the by name ascending
 
 ## CAL4. Filtering
 
@@ -203,9 +203,9 @@ CAL4 plus projection support on queries.
 ## CAL6. Batch support
 CAL5 plus batch support on queries.
 
-1. POST /resources support a list of objects to create.
-2. PUT /resources support a list of objects to modify.
-3. DELETE /resources support a query criteria of objects to delete.
+1. `POST /resources` support a list of objects to create.
+2. `PUT /resources` support a list of objects to modify.
+3. `DELETE /resources` support a query criteria of objects to delete.
 
 ## CAL7. Complex queries support
 CAL6 + extra API for complex query support.
@@ -222,7 +222,7 @@ The endpoints are the following ones:
 Every object SHOULD include a `_links` object providing related actions.
 
 ## CAL-META
-CAL-META is a metadata discovery endpoint to allow applications to discover resources, operations, roles, permissions.
+CAL-META is a metadata-discovery endpoint to allow applications to discover resources, operations, roles, permissions.
 
 1. `/cal/meta/resources`  Return the list of resources
 2. `/cal/meta/resource/{name}`  Return the details of an specific resource
