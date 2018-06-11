@@ -80,13 +80,14 @@ Sample document:
 
 Response message includes an envelop to support pagination information if needed/supported.
 
-```json 
+```json
 {
   "totalCount": 12345,
   "skip": 100,
-  "limit": 30
+  "limit": 30,
   "data": [
-    // ...
+    { "id": "object 1 ..." },
+    { "id": "object 2 ..." }
   ]
 }
 ```
