@@ -61,7 +61,7 @@ Sample document:
 ```json
 {
   "count": true,
-  "order": "-age name"
+  "order": "-age name",
   "skip": 40,
   "limit": 20,
   "groupBy": "city",
@@ -86,7 +86,7 @@ Response message includes an envelop to support pagination information if needed
   "skip": 100,
   "limit": 30
   "data": [
-    ...
+    // ...
   ]
 }
 ```
@@ -98,11 +98,11 @@ Error messages are encode in the following form:
 ```json
 {
   "error": "CODE003",
-  "description": "Name is a compulsory field."
+  "description": "Name is a compulsory field.",
   "template": "{field} is a compulsory field.",
-  "args": [
+  "args": {
     "field": "name"
-  ],
+  },
   "context": null
 }
 ```
@@ -271,12 +271,12 @@ Example checks:
 ```json
 {
   "name": "app0",
-  "version": "1.2.3"
+  "version": "1.2.3",
   "checks": [
     { "name":"db", "desc": "DB is accesible.", "result": true },
     { "name":"certs", "desc": "Certs present at /etc/certs.", "result": true },
     { "name":"mailserver", "error": "Mail server not responding at mail.acme.com", "result": false },
-    ...
+    // ...
   ]
 }
 ```
