@@ -203,6 +203,40 @@ Server can return:
 - `401 Unauthorized`
 - `404 Not Found`
 
+## CAL1B. Delta changes to resources
+
+Delta changes to resources is a controvert issue:
+
+  1. In a pure resource oriented REST APIs, delta changes are allowed and encouraged as an efficient way to send over the wire only the properties to be updated. This can be done only, when no *side-effects* must be triggered.
+  
+  2. In Domain Driven APIs, there is a business logic layer encapsulating all the changes on services or methods. Therefore, **PATCH** operations are forbidden because it would break the encapsulation of the business logic.
+
+If using API semantics like (2) **DO NOT** provide support CAL1B. Recommendation is to create new operations using **POST** semantics to pass a message to the operation with the expected arguments for execution.
+
+If using API semantics like (1) and has no side-effect on the properties to be changed, you can expose the following operation:
+
+Using the verb PATCH, including in the body the subset of properties of the resource instance to be changed.
+
+Example:
+
+```
+PATCH /resourceName/{id}
+
+{
+  "city": "Seville",
+  "phone": "900 123 456"
+}
+```
+
+Server can return:
+
+- `200 OK`
+- `202 Accepted`
+- `422 Error precondition failed`
+- `400 Malformed message`
+- `401 Unauthorized`
+- `404 Not Found`
+
 ## CAL2. Pagination
 
 Pagination is a though topic involving several cases of use. Al least the most common uses cases identified are as follows:
