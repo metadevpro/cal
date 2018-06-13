@@ -12,7 +12,7 @@ CAL is distributed under [MIT Licence](./LICENSE).
 
 ## Thansk to:
 
-Many individuals has contributed to CAL reviewing and proposing recomedations. Thanks to all of them (in alphabetical order):
+Many individuals has contributed to CAL reviewing and proposing recommedations. Thanks to all of them (in alphabetical order):
 
 - Jordi Cabot [@jcabot](@jcabot)
 - Nicolas Cornagia [@ncornag](@ncornag)

@@ -359,3 +359,8 @@ CALx spec has been designed to promote interoperability and it is language and f
 
 A reference implementation is available here for reference. (TBD)
 Other reference implementation will be listed here at they become available.
+
+
+## References
+
+1. HTTP/1.1 Specification [RFC7231](https://tools.ietf.org/html/rfc7231#section-6).
