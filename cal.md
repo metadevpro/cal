@@ -143,6 +143,7 @@ Creates an specific resource. Resource compliant message is sent encoded on body
 Server can return:
 
 - `201 Created`
+- `202 Accepted`
 - `422 Error precondition failed`
 - `400 Malformed message`
 - `401 Unauthorized`
@@ -154,9 +155,11 @@ Updates an specific resource by id. Resource compliant message is sent encoded o
 Server can return:
 
 - `200 OK`
+- `202 Accepted`
 - `422 Error precondition failed`
 - `400 Malformed message`
 - `401 Unauthorized`
+- `404 Not Found`
 
 5. `DELETE /resourceName/{id}`
 
@@ -164,10 +167,12 @@ Deletes an specific resource by id.
 
 Server can return:
 
-- `200 OK`
+- `202 Accepted`
+- `204 No content` Delete was successful.
 - `422 Error precondition failed`
 - `400 Malformed message`
 - `401 Unauthorized`
+- `404 Not Found`
 
 ## CAL2. Pagination
 
@@ -186,7 +191,7 @@ CAL2 plus order support on queries:
 
 - `order`: (string) order expression of the form:
   - `order=name`: order by name ascending
-  - `order=-age name`: order by age descending, the by name ascending
+  - `order=-age name`: order by age descending, then, by name ascending
 
 ## CAL4. Filtering
 
@@ -198,7 +203,9 @@ CAL3 plus filtering support on queries.
 ## CAL5. Projection
 CAL4 plus projection support on queries.
 
-- `projection`: (string) projection criteria expression (TDB)
+- `fields`: (string) projection criteria expression (TDB)
+
+Example: `/resources?fields=id,name,child.id,child.name`
 
 ## CAL6. Batch support
 CAL5 plus batch support on queries.
@@ -206,6 +213,11 @@ CAL5 plus batch support on queries.
 1. `POST /resources` support a list of objects to create.
 2. `PUT /resources` support a list of objects to modify.
 3. `DELETE /resources` support a query criteria of objects to delete.
+
+Can return:
+
+- 200 OK with a list of resources created/modified/deleted or errors if some of them failed.
+- or 202 Accepted with a list of tokens for tracking the operation status.
 
 ## CAL7. Complex queries support
 CAL6 + extra API for complex query support.
