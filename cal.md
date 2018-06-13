@@ -119,7 +119,7 @@ Encoding could be any mime type. Typically `application/json`, or `application/x
 Server can return:
 
 - `200 OK` + direct array of instances
-- `204 No content` + empty array
+- `204 No content` + no response
 - `401 Unauthorized`
 
 ## CAL1. Basic resource management
