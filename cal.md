@@ -82,13 +82,22 @@ Response message includes an envelop to support pagination information if needed
 
 ```json
 {
-  "totalCount": 12345,
-  "skip": 100,
-  "limit": 30,
+  "meta": {
+    "totalCount": 2335,
+    "skip": 60,
+    "limit": 30,
+  },
   "data": [
     { "id": "object 1 ..." },
     { "id": "object 2 ..." }
-  ]
+  ],
+  "_links": {
+    "first": { "href": "/orders?offset=0&limit=30" },
+    "previous": { "href": "/orders?offset=30&limit=30" },
+    "self": { "href": "/orders?offset=60&limit=30" },
+    "next": { "href": "/orders?offset=90&limit=30" },
+    "last": { "href": "/orders?offset=2310&limit=30" }
+  }
 }
 ```
 
