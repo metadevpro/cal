@@ -2,12 +2,14 @@
 
 ## Summary
 
-CAL (Common API Level) is a set of incremental guidelines for implementing APIs in an standard way to promote interoperability between implementations.
+**CAL (Common API Level)** is a set of small guidelines for implementing APIs in a standard way to promote interoperability between implementations.
 When producers expose APIs conforming CAL, consumers can benefit from the standardization and conventions used.
 
 Samples are provided in REST style as the main form for communication but not enforced only to this transport.
 
-CAL compliance can be achieved incrementally increasing the level depending on the degree of compliance.
+CAL recommendations are labeled. Different implementations can decide to comply with selected CAL recommendations.
+
+Most recommendations are independent of each others. When this is not the case, when dependencies or mutually exclusive choices occurs, it will be noted explicitly.
 
 This document contains the Specification of CAL.
 
@@ -19,20 +21,28 @@ Current version is **0.0.1**, initial version on 2018.05.17 Pedro J. Molina, Met
 
 CAL goals:
 
-- API homogeneity
+- API homogeneity: *"predecible syntax for same semantics"*
 - API discoverability
 - Principle of less surprise
 - Convention-based
 - Easy learning curve for API consumers
-- Use of server-side and client-side libraries to automate repetitive task.
+- Enable the use of server-side, client-side libraries, and/or middleware to automate repetitive task.
 - Easy consumption by machines.
+
+## Non-Goals
+
+CAL do not expect to be:
+
+- A new GraphQL or OData standards with single endpoint
 
 ## Declaration
 
 An API implementation must expose its CAL compliance with the following mime type:
+Specific CAL recommentations can be listed as CAL1, ... CALN in the `X-Cal-Support` header.
 
 ```
 Accept: application/json, application/vdr.cal.v1+json
+X-Cal-Support: CAL1, CAL2, CAL3, CAL10
 ```
 
 ## Naming & Conventions
@@ -61,7 +71,7 @@ Sample document:
 ```json
 {
   "count": true,
-  "order": "-age name",
+  "order": "-age, name",
   "skip": 40,
   "limit": 20,
   "groupBy": "city",
@@ -103,6 +113,17 @@ Response message includes an envelop to support pagination information if needed
 
 ## Error Message
 
+### CAL-E0
+
+When HTTP Error codes are enough, the recomendation is to use them as defined in the [HTTP Spec/RFC7231](https://tools.ietf.org/html/rfc7231#section-6) and avoid as much as possible returning application dependent error codes.
+
+### CAL-E1
+
+When errors needs to return specific application error codes, an Error object for response is needed.
+Also, if HTTP is not available as transport and we need to use other transports mechanisms, using an error structure will help to wrap the error and deliver it in a consistent way.
+
+In this recomendation, [HTTP Spec/RFC7231](https://tools.ietf.org/html/rfc7231#section-6) error codes responses still apply (complement each other).
+
 Error messages are encode in the following form:
 
 ```json
@@ -116,7 +137,6 @@ Error messages are encode in the following form:
   "context": null
 }
 ```
-
 
 ## CAL0. Basic resource query
 
@@ -185,18 +205,46 @@ Server can return:
 
 ## CAL2. Pagination
 
-CAL1 plus pagination support with the following semantics:
+Pagination is a though topic involving several cases of use. Al least the most common uses cases identified are as follows:
+
+  a. Client side defines the page size (based in UX; size of window or user preference, for example)b. Server side defines the page size, caching and optimizes for such pages.
+.
+  c. Time-based access: for real time data like tweets line-feed or stock-market quotes.
+
+**NOTE:** This strategy must be selected per resource basis. Pick only one per resource.
+
+### CAL2A. Client side
+
+Client defines the page size and the block requested. Access to a random block is supported.
+In this case, we can model it in the following form:
+
 All query operations support count and pagination.
 Pagination parameters are:
 
-- `limit`: (integer) blocksize
-- `skip`: (integer) number of elements to skip from initial one
+- `limit`: (integer) blocksize (provided by client, can have a sensible default in server, limited by server to avoid performance degradation)
+- `skip`: (integer) number of elements to skip from the beginning
 
-**Note:** Response of data uses the `Response` message form to envelop pagination info instead of raw array of response objects.
+If server responses includes `meta.totalCount`, the client can provide links to access to all pages if needed.
+
+### CAL2B. Server side
+
+When the server side defines the page size. The customer can only move the pointer to jump between pages.
+
+Server must respond `meta.limit` to inform client about the page size used.
+If server responses includes `meta.totalCount`, the client can provide links to access to all pages if needed.
+
+For cursors-based query APIs, or forward only queries, the client can use the HAL link `next` to access the next page.
+
+### CAL2C. Time based
+Real-time data is streamed in chucks to clients. CLients ask for more data passing the last id or last timestamp of data they received. This last-known-object is enough for server to realize the next block to send.
+
+In the same way, the client can use the HAL links `next` & `previous` to access the next and previous page respectively.
+
+**Note:** In all cases, the response of data uses the `Response` message form to envelop pagination info into the `meta` object instead of raw array of response objects.
 
 ## CAL3. Order
 
-CAL2 plus order support on queries:
+Order support on queries:
 
 - `order`: (string) order expression of the form:
   - `order=name`: order by name ascending
@@ -238,7 +286,7 @@ The endpoints are the following ones:
 1. `POST /resources/query` for complex queries.
 2. `POST /resources/delete-by-query` for deletion by query.
 
-## HAL
+## CAL-HAL
 [HAL Specification](http://stateless.co/hal_specification.html) is recommended to add hypermedia support.
 Every object SHOULD include a `_links` object providing related actions.
 
@@ -282,7 +330,7 @@ This endpoint SHOULD BE secured in most of cases.
 The consumer for this endpoint is the Operation team and metric tools like f.e. Prometheus.
 
 ### Auto-diagnosis
-`GET /auto-diagnosis`
+`GET /autodiagnosis`
 
 1. Returns the version of the product, name, environment and configuration settings to diagnose environment or deployment problems.
 
