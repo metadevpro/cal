@@ -256,7 +256,7 @@ All query operations support count and pagination.
 Pagination parameters are:
 
 - `limit`: (integer) blocksize (provided by client, can have a sensible default in server, limited by server to avoid performance degradation)
-- `skip`: (integer) number of elements to skip from the beginning
+- `offset`: (integer) number of elements to skip from the beginning
 
 If server responses includes `meta.totalCount`, the client can provide links to access to all pages if needed.
 
