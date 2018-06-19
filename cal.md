@@ -72,7 +72,7 @@ Sample document:
 {
   "count": true,
   "order": "-age, name",
-  "skip": 40,
+  "offset": 40,
   "limit": 20,
   "groupBy": "city",
   "where": [
@@ -94,7 +94,7 @@ Response message includes an envelop to support pagination information if needed
 {
   "meta": {
     "totalCount": 2335,
-    "skip": 60,
+    "offset": 60,
     "limit": 30,
   },
   "data": [
@@ -255,10 +255,10 @@ In this case, we can model it in the following form:
 All query operations support count and pagination.
 Pagination parameters are:
 
-- `limit`: (integer) blocksize (provided by client, can have a sensible default in server, limited by server to avoid performance degradation)
+- `limit`: (integer) blocksize (provided by client, it can have a sensible default in server, and SHOULD be limited by server to avoid performance degradation)
 - `offset`: (integer) number of elements to skip from the beginning
 
-If server responses includes `meta.totalCount`, the client can provide links to access to all pages if needed.
+If server responses includes `meta.totalCount`, the client can derive links to access to all pages if needed.
 
 ### CAL2B. Server side
 
