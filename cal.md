@@ -142,22 +142,22 @@ Error messages are encode in the following form:
 
 1. `GET /resourceName`
 
-Returns a list of instances in the resource. Pagination is not supported in CAL0.
+Returns a list of resources. Pagination is not supported in CAL0.
 Encoding could be any mime type. Typically `application/json`, or `application/xml` or any other encoding negotiated and supported by server and customers.
 
 Server can return:
 
-- `200 OK` + direct array of instances
+- `200 OK` + direct array of resources
 - `204 No content` + no response
 - `401 Unauthorized`
 
 ## CAL1. Basic resource management
 
-Includes CAL0 plus basic operations for working with resource instances:
+Includes CAL0 plus basic operations for working with resources:
 
 2. `GET /resourceName/{id}`
 
-Returns an specific instance of a resource given its identifier (id).
+Returns an specific resource given its identifier (id).
 
 Server can return:
 
@@ -215,7 +215,7 @@ If using API semantics like (2) **DO NOT** provide support CAL1B. Recommendation
 
 If using API semantics like (1) and has no side-effect on the properties to be changed, you can expose the following operation:
 
-Using the verb PATCH, including in the body the subset of properties of the resource instance to be changed.
+Using the verb PATCH, including in the body the subset of properties of the resource to be changed.
 
 Example:
 
