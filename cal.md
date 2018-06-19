@@ -2,7 +2,7 @@
 
 **Version 0.0.1**
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC2119](https://tools.ietf.org/html/rfc2119) [RFC8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14), [RFC2119](https://tools.ietf.org/html/rfc2119), and [RFC8174](https://tools.ietf.org/html/rfc8174) when, and only when, they appear in all capitals, as shown here.
 
 ## Summary
 
@@ -24,6 +24,16 @@ This document contains the Specification of CAL.
 - [Non-Goals](#non-goals)
 - [Declaration](#declaration)
 - [Naming conventions](#naming-conventions)
+  - [Verbs usage](#verbs-usage)
+    - [CONNECT](#connect)
+    - [DELETE](#delete)
+    - [GET](#get)
+    - [HEAD](#head)
+    - [OPTIONS](#options)
+    - [PATCH](#patch)
+    - [POST](#post)
+    - [PUT](#put)
+    - [TRACE](#trace)
 - [Messages Definition](#messages-definition)
   - [Criteria Message](#criteria-message)
   - [Response Message](#response-message)
@@ -96,6 +106,55 @@ Sample composed resource **BlackCat**
 - singular name:  `/black-cat`  (to avoid)
 
 Endpoint described in this document are OPTIONAL: the can be implemented or excluded depending on the requirements. But if the functionality is present, the end-point is expected to be compatible as described in this document for easy discoverability.
+
+### Verbs usage
+
+HTTP Verbs in REST APIs are not neutral and provide semantics. CAL encourages preserving the following ones when possible:
+
+#### CONNECT
+
+Used in HTTP/S to setup a channel. Not directly used in CAL to provide services.
+
+#### DELETE
+
+Used to delete a resource.
+Some stacks do not support DELETE verb with a request body. For such cases, delete by query is alternatively provided as POST with request body see (CAL-7)[#cal-7-complex-query-support].
+
+#### GET
+
+Used only for queries with no side-effects. Semantic is ALWAYS preserved to data retrieval.
+Audit and log requirements COULD generate and store additional information but the queried resource is never altered.
+
+#### HEAD
+
+Used to retrieve headers. Not used in CAL to provide services.
+
+#### OPTIONS
+
+Used to expose communication options for the target resource.
+Not directly used in CAL to provide services. CORS request implemented using OPTIONS.
+Server CAN expose supported verbs for a resource using `Allow` header.  
+
+#### PATCH
+
+MUST be used only to allow partial updates to resources when the API support such type of semantics. See [CAL-1B](#cal-1b-delta-changes).
+
+#### POST
+
+Used to send messages to server. Generic wrapper for services not matching any other more specific verb. POST operations are not safe (contains side-effects by default) and not idempotent.
+Request message is enclosed in body. Its format is declared with the `Content-Type` header.
+Type of response cna be negotiated via `Accept` header.
+
+#### PUT
+
+Used to update an existing resource.
+PUT has idempotent semantics. Replaying a PUT request successively has the same effect.
+
+**NOTE**: Although, [some authors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) allow PUT verb for creating resources, in CAL, PUT is **not used** for creating a resource (POST verb preferred). PUT is reserved only for modification of the resource.
+
+#### TRACE
+
+Used to debug and diagnose communication problems. Not used by CAL to provide services.
 
 ## Messages Definition
 
