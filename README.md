@@ -12,7 +12,7 @@ CAL is distributed under [MIT Licence](./LICENSE).
 
 ## Thanks to:
 
-Many individuals has contributed to CAL reviewing and proposing recommedations. Thanks to all of them (in alphabetical order):
+Many individuals are contributing to CAL, reviewing and proposing recommendations. Thanks to all of them (in alphabetical order):
 
 - Jordi Cabot [@jcabot](@jcabot)
 - Nicolas Cornagia [@ncornag](@ncornag)
@@ -24,5 +24,7 @@ Many individuals has contributed to CAL reviewing and proposing recommedations. 
 - Eduard Tomàs [@eiximenis](@eiximenis)
 
 ## Credits
+
+![Metadev](https://metadev.pro/img/metadev-200px.png)
 
 2018, Pedro J. Molina [@pjmolina](@pjmolina), [Metadev](https://metadev.pro) | [@metad3v](https://twitter.com/metad3v)
