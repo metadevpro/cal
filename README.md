@@ -18,6 +18,7 @@ Many individuals has contributed to CAL reviewing and proposing recommedations. 
 - Nicolas Cornagia [@ncornag](@ncornag)
 - Pablo Fernández [@pafmon](@pafmon)
 - Francisco Gonzalez [@fmgonzalez](@fmgonzalez)
+- Javier Canovas [@jlcanovas](@jlcanovas)
 - Juan M. Hernandez [@jmhdez](@jmhdez)
 - Angel L. Marín [@anmaso](@anmaso)
 - Eduard Tomàs [@eiximenis](@eiximenis)
