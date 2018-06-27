@@ -15,10 +15,10 @@ CAL is distributed under [MIT Licence](./LICENSE).
 Many individuals are contributing to CAL, reviewing and proposing recommendations. Thanks to all of them (in alphabetical order):
 
 - Jordi Cabot [@jcabot](@jcabot)
+- Javier Canovas [@jlcanovas](@jlcanovas)
 - Nicolas Cornagia [@ncornag](@ncornag)
 - Pablo Fernández [@pafmon](@pafmon)
 - Francisco Gonzalez [@fmgonzalez](@fmgonzalez)
-- Javier Canovas [@jlcanovas](@jlcanovas)
 - Juan M. Hernandez [@jmhdez](@jmhdez)
 - Angel L. Marín [@anmaso](@anmaso)
 - Eduard Tomàs [@eiximenis](@eiximenis)
