@@ -14,14 +14,14 @@ CAL is distributed under [MIT Licence](./LICENSE).
 
 Many individuals are contributing to CAL, reviewing and proposing recommendations. Thanks to all of them (in alphabetical order):
 
-- Jordi Cabot [@jcabot](@jcabot)
-- Javier Canovas [@jlcanovas](@jlcanovas)
-- Nicolas Cornagia [@ncornag](@ncornag)
-- Pablo Fernández [@pafmon](@pafmon)
-- Francisco Gonzalez [@fmgonzalez](@fmgonzalez)
-- Juan M. Hernandez [@jmhdez](@jmhdez)
-- Angel L. Marín [@anmaso](@anmaso)
-- Eduard Tomàs [@eiximenis](@eiximenis)
+- Jordi Cabot [@jcabot](https://github.com/jcabot)
+- Javier Canovas [@jlcanovas](https://github.com/jlcanovas)
+- Nicolas Cornagia [@ncornag](https://github.com/ncornag)
+- Pablo Fernández [@pafmon](https://github.com/pafmon)
+- Francisco Gonzalez [@fmgonzalez](https://github.com/fmgonzalez)
+- Juan M. Hernandez [@jmhdez](https://github.com/jmhdez)
+- Angel L. Marín [@anmaso](https://github.com/anmaso)
+- Eduard Tomàs [@eiximenis](https://github.com/eiximenis)
 
 ## Credits
 
