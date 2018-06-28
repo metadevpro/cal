@@ -78,12 +78,12 @@ CAL goals:
 
 CAL do not expect to be:
 
-- A new GraphQL or OData standards with single endpoint
+- A new GraphQL or OData standards with single end-point
 
 ## Declaration
 
 An API implementation must expose its CAL compliance with the following mime type:
-Specific CAL recommentations can be listed as CAL1, ... CALN in the `X-Cal-Support` header.
+Specific CAL recommendations can be listed as CAL1, ... CALN in the `X-Cal-Support` header.
 
 ```
 Accept: application/json, application/vdr.cal.v1+json
@@ -105,7 +105,7 @@ Sample composed resource **BlackCat**
 - plural name:  `/black-cats` (recommended)
 - singular name:  `/black-cat`  (to avoid)
 
-Endpoint described in this document are OPTIONAL: the can be implemented or excluded depending on the requirements. But if the functionality is present, the end-point is expected to be compatible as described in this document for easy discoverability.
+End-points described in this document are OPTIONAL: they can be implemented or excluded depending on the requirements. But if the functionality is present, the end-point is expected to be compatible as described in this document for easy discoverability.
 
 ### Verbs usage
 
@@ -118,7 +118,7 @@ Used in HTTP/S to setup a channel. Not directly used in CAL to provide services.
 #### DELETE
 
 Used to delete a resource.
-Some stacks do not support DELETE verb with a request body. For such cases, delete by query is alternatively provided as POST with request body see (CAL-7)[#cal-7-complex-query-support].
+Some stacks do not support DELETE verb with a request body. For such cases, delete by query is alternatively provided as POST with request body see [CAL-7](#cal-7-complex-query-support).
 
 #### GET
 
@@ -132,7 +132,7 @@ Used to retrieve headers. Not used in CAL to provide services.
 #### OPTIONS
 
 Used to expose communication options for the target resource.
-Not directly used in CAL to provide services. CORS request implemented using OPTIONS.
+Not directly used in CAL to provide services. CORS requests are implemented using OPTIONS.
 Server CAN expose supported verbs for a resource using `Allow` header.  
 
 #### PATCH
@@ -143,7 +143,7 @@ MUST be used only to allow partial updates to resources when the API support suc
 
 Used to send messages to server. Generic wrapper for services not matching any other more specific verb. POST operations are not safe (contains side-effects by default) and not idempotent.
 Request message is enclosed in body. Its format is declared with the `Content-Type` header.
-Type of response cna be negotiated via `Accept` header.
+Type of response can be negotiated via `Accept` header.
 
 #### PUT
 
@@ -213,16 +213,16 @@ Response message includes an envelop to support pagination information if needed
 
 #### CAL-E0
 
-When HTTP Error codes are enough, the recomendation is to use them as defined in the [HTTP Spec/RFC7231](https://tools.ietf.org/html/rfc7231#section-6) and avoid as much as possible returning application dependent error codes.
+When HTTP Error codes are enough, the recommendation is to use them as defined in the [HTTP Spec/RFC7231](https://tools.ietf.org/html/rfc7231#section-6) and avoid as much as possible returning application-dependent error codes.
 
 #### CAL-E1
 
-When errors needs to return specific application error codes, an Error object for response is needed.
+When errors need to return specific application error codes, an Error object for response is needed.
 Also, if HTTP is not available as transport and we need to use other transports mechanisms, using an error structure will help to wrap the error and deliver it in a consistent way.
 
-In this recomendation, [HTTP Spec/RFC7231](https://tools.ietf.org/html/rfc7231#section-6) error codes responses still apply (complement each other).
+In this recommendation, [HTTP Spec/RFC7231](https://tools.ietf.org/html/rfc7231#section-6) error code responses still apply (i.e., complement each other).
 
-Error messages are encode in the following form:
+Error messages are encoded in the following form:
 
 ```json
 {
@@ -257,7 +257,7 @@ Includes CAL-0 plus basic operations for working with resources:
 
 2. `GET /resourceName/{id}`
 
-Returns an specific resource given its identifier (id).
+Returns a specific resource given its identifier (`id`).
 
 Server can return:
 
@@ -267,7 +267,7 @@ Server can return:
 
 3. `POST /resourceName`
 
-Creates an specific resource. Resource compliant message is sent encoded on body.
+Creates a specific resource. Resource-compliant message is sent encoded on body.
 
 Server can return:
 
@@ -279,7 +279,7 @@ Server can return:
 
 4. `PUT /resourceName/{id}`
 
-Updates an specific resource by id. Resource compliant message is sent encoded on body.
+Updates a specific resource by id. Resource-compliant message is sent encoded on body.
 
 Server can return:
 
@@ -292,7 +292,7 @@ Server can return:
 
 5. `DELETE /resourceName/{id}`
 
-Deletes an specific resource by id.
+Deletes a specific resource given its identifier (`id`).
 
 Server can return:
 
@@ -307,9 +307,9 @@ Server can return:
 
 Delta changes to resources is a controvert issue:
 
-  1. In a pure resource oriented REST APIs, delta changes are allowed and encouraged as an efficient way to send over the wire only the properties to be updated. This can be done only, when no *side-effects* must be triggered.
+  1. In pure Resource-Oriented REST APIs, delta changes are allowed and encouraged as an efficient way to send over the wire only the properties to be updated. This can be done only, when no *side-effects* must be triggered.
   
-  2. On the contrary, in Domain Driven APIs, there is a business logic layer encapsulating all the changes on services or methods. Therefore, **PATCH** operations **are forbidden** because it would break the encapsulation of the business logic.
+  2. On the contrary, in Domain-Driven APIs, there is a business logic layer encapsulating all the changes on services or methods. Therefore, **PATCH** operations **are forbidden** because it would break the encapsulation of the business logic.
 
 If using API semantics like (2) **DO NOT** provide support CAL-1B. Recommendation is to create new operations using **POST** semantics to pass a message to the operation with the expected arguments for execution.
 
@@ -360,13 +360,13 @@ Pagination parameters are:
 - `limit`: (integer) blocksize (provided by client, it can have a sensible default in server, and SHOULD be limited by server to avoid performance degradation)
 - `offset`: (integer) number of elements to skip from the beginning
 
-If server responses includes `meta.totalCount`, the client can derive links to access to all pages if needed.
+If server responses include `meta.totalCount`, the client can derive links to access to all pages if needed.
 
 #### CAL-2B Server-side pagination
 
-When the server defines the page size, the customer can only move the pointer to jump between pages.
+When the server defines the page size, the client can only move the pointer to jump between pages.
 
-Server must respond with `meta.limit` to inform client about the page size being used.
+Server must respond with `meta.limit` to inform the client about the page size being used.
 If server responses include `meta.totalCount`, the client can provide links to access to all pages if needed.
 
 For cursors-based query APIs, or forward-only queries, the client can use the HAL link `next` to access the next page.
@@ -390,13 +390,13 @@ Sorting support on queries:
 
 CAL-3 plus filtering support on queries.
  
-- `criteria`: (string) filtering criteria expression (TDB)
+- `criteria`: (string) filtering criteria expression (TBD)
 
 
 ### CAL-5 Projection
 CAL-4 plus projection support on queries.
 
-- `fields`: (string) projection criteria expression (TDB)
+- `fields`: (string) projection criteria expression (TBD)
 
 Example: `/resources?fields=id,name,child.id,child.name`
 
@@ -415,9 +415,9 @@ Can return:
 ### CAL-7 Complex Queries Support
 CAL-6 + extra API for complex query support.
 
-Complex queries are better encoded in body than query strings. When query string is not a choice, new endpoints can be provided to resolve queries and delete criteria.
+Complex queries are better encoded in body than query strings. When query string is not a choice, new end-points can be provided to resolve queries and delete criteria.
 
-The endpoints are the following ones:
+The end-points are the following ones:
 
 1. `POST /resources/query` for complex queries.
 2. `POST /resources/delete-by-query` for deletion by query.
@@ -427,7 +427,7 @@ The endpoints are the following ones:
 Every returned resource SHOULD include a `_links` object providing related actions.
 
 ### CAL-META Metadata Services
-CAL-META is a metadata-discovery endpoint to allow applications to discover resources, operations, roles, permissions.
+CAL-META is a metadata-discovery end-point to allow applications to discover resources, operations, roles, permissions.
 
 1. `/cal/meta/resources`  Return the list of resources
 2. `/cal/meta/resource/{name}`  Return the details of an specific resource
@@ -435,12 +435,12 @@ CAL-META is a metadata-discovery endpoint to allow applications to discover reso
 4. `/cal/meta/roles/{name}`      Return a role by name
 5. `/cal/meta/roles/{name}/permissions`  Return the permissions for a given role
 
-Metadata endpoints can be secured and exposed ony to authorized parties.
+Metadata end-points can be secured and exposed ony to authorized parties.
 
 Metadata types (TBD).
 
 ### CAL-H Health Info
-For supporting best practices, some extra endpoints can help to standardize heart-beat, metrics and auto-diagnosis when operating the services.
+For supporting best practices, some extra end-points can help to standardize heart-beat, metrics and auto-diagnosis when operating the services.
 
 #### CAL-H1. Ping
 
@@ -456,24 +456,24 @@ Response:
 { "msg": "pong" }
 ```
 
-This endpoint COULD BE secured if needed.
-The typical consumer for this endpoint is a load balancer, Consul, Naggios or any other service availability tool.
+This end-point COULD BE secured if needed.
+The typical consumer for this end-point is a load balancer, Consul, Naggios or any other service availability tool.
 
 #### CAL-H2. Metrics
 `GET /metrics`
 
 Returns a set of metrics for checking service health and performance.
 
-This endpoint SHOULD BE secured in most of cases.
-The consumer for this endpoint is the Operation team and metric tools like f.e. Prometheus.
-If different formats or tools are used, `Accept` header should be used to negotiate the format to use.
+This end-point SHOULD BE secured in most of cases.
+The consumer for this end-point is the Operation team and metric tools like Prometheus.
+If different formats or tools are used, `Accept` header SHOULD be used to negotiate the format to use.
 
 #### CAL-H3. Auto-diagnosis
 `GET /autodiagnosis`
 
 1. Returns the version of the product, name, environment and configuration settings to diagnose environment or deployment problems.
 
-2. Returns a list of checks performed to ensure the system dependencies are OK. (like an admini status page info).
+2. Returns a list of checks performed to ensure the system dependencies are OK (e.g., an admin status page info).
 
 Example checks:
 
@@ -490,11 +490,11 @@ Example checks:
 }
 ```
 
-This endpoint MUST BE secured as a general rule. The main consumer for this endpoint is the Operation team. Exposing product version and internal configuration to third-parties could be usd as an attack- vector.
+This end-point MUST BE secured as a general rule. The main consumer for this end-point is the Operation team. Exposing product version and internal configuration to third-parties could be used as an attack-vector.
 
 ## Reference Implementations
 
-CAL recomendations has been designed to promote interoperability and it is language and framework neutral.
+CAL recommendations have been designed to promote interoperability and it is language and framework neutral.
 
 A reference implementation will be available here for reference. (TBD)
 Other reference implementation will also be listed here at they become available.
