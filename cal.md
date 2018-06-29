@@ -64,8 +64,9 @@ This document contains the Specification of CAL.
 
 ## Goals
 
-CAL goals:
+As an API profile, CAL goals are:
 
+- Full compatibility with [OpenAPI Spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md) (CAL builds on top of OpenAPI).
 - API homogeneity: *"predecible syntax for same semantics"*
 - API discoverability
 - Principle of less surprise
@@ -503,3 +504,4 @@ Other reference implementation will also be listed here at they become available
 
 1. HTTP/1.1 Specification [RFC7231](https://tools.ietf.org/html/rfc7231#section-6).
 2. [HAL Specification](http://stateless.co/hal_specification.html).
+3. [OpenAPI Specification v. 3.0.1](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md).
