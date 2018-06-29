@@ -466,7 +466,7 @@ The typical consumer for this end-point is a load balancer, Consul, Naggios or a
 Returns a set of metrics for checking service health and performance.
 
 This end-point SHOULD BE secured in most of cases.
-The consumer for this end-point is the Operation team and metric tools like Prometheus.
+The consumer for this end-point is the Operation team and metric tools like [Prometheus](https://prometheus.io/docs/instrumenting/exposition_formats/).
 If different formats or tools are used, `Accept` header SHOULD be used to negotiate the format to use.
 
 #### CAL-H3. Auto-diagnosis
