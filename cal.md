@@ -17,6 +17,7 @@ Most recommendations are independent of each others. When this is not the case, 
 
 This document contains the Specification of CAL.
 
+Current Status: CAL is **work in progress** and not a finished spec.
 
 ## Table of Contents
 
@@ -497,7 +498,14 @@ This end-point MUST BE secured as a general rule. The main consumer for this end
 
 CAL recommendations have been designed to promote interoperability and it is language and framework neutral.
 
-A reference implementation will be available here for reference. (TBD)
+Reference implementations follows:
+
+| Name       | Technology        | Status | Url |
+|:-----------|:------------------|:------:|:----|
+|Alba-node   |NodeJS + TypeScript|Work in progress| [https://github.com/metadevpro/alba-node](https://github.com/metadevpro/alba-node)  |
+|Alba-netcore|DotNet Core 2.1    |Work in progress| [https://github.com/metadevpro/alba-netcore](https://github.com/metadevpro/alba-netcore) |
+
+
 Other reference implementation will also be listed here at they become available.
 
 ## References

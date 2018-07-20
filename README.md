@@ -6,6 +6,8 @@ Common API Leveled Profile for convention-based APIs.
 |:--------------:|:----------------|:---------|
 |[0.0.1](cal.md) | Initial version |2018.06.11|
 
+CAL is **work in progress** and not a finished spec.
+
 ## License
 
 CAL is distributed under [MIT Licence](./LICENSE).
